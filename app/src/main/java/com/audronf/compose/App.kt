@@ -1,28 +1,18 @@
 package com.audronf.compose
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.audronf.compose.navigation.Navigation
 import com.audronf.compose.navigation.NavigationItem
 import com.audronf.compose.ui.theme.ComposeTrainingTheme
-import com.audronf.compose.ui.theme.Shapes
 
 @Preview
 @Composable
@@ -48,7 +38,15 @@ fun App() {
                         BottomNavigationItem(
                             label = { Text(it.title, fontSize = 9.sp) },
                             selected = currentScreen == it.route,
-                            onClick = { navController.navigate(it.route) },
+                            onClick = {
+                                navController.navigate(it.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
                             icon = {
                                 Icon(
                                     painter = painterResource(it.iconId),
@@ -56,7 +54,7 @@ fun App() {
                                 )
                             },
                             selectedContentColor = Color.Blue,
-                            unselectedContentColor = Color.Gray
+                            unselectedContentColor = Color.Gray,
                         )
                     }
                 }

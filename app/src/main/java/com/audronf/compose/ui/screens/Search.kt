@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import com.audronf.compose.R
 import com.audronf.compose.ui.components.Genre
+import com.audronf.compose.ui.components.SearchBox
 import com.audronf.compose.ui.viewmodel.SearchViewModel
 
 @Composable
@@ -41,6 +42,10 @@ fun SearchScreen(
                 Text(text = stringResource(id = R.string.search_title), style = MaterialTheme.typography.h4, fontWeight = FontWeight.Bold)
             }
             Spacer(modifier = Modifier.height(20.dp))
+            Row {
+                SearchBox()
+            }
+            Spacer(modifier = Modifier.height(28.dp))
             Row {
                 Text(text = stringResource(id = R.string.genres), style= MaterialTheme.typography.h6, fontWeight = FontWeight.Light)
             }

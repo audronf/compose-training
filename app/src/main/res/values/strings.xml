@@ -4,4 +4,5 @@
     <!-- Search screen -->
     <string name="search_title">Búsqueda</string>
     <string name="genres">Géneros</string>
+    <string name="search_movies_placeholder">Buscar películas</string>
 </resources>

@@ -3,6 +3,8 @@
 
     <!-- Search screen -->
     <string name="search_title">Búsqueda</string>
+    <string name="populars_title">Populares esta semana</string>
     <string name="genres">Géneros</string>
     <string name="search_movies_placeholder">Buscar películas</string>
+    <string name="see_more">Ver más</string>
 </resources>

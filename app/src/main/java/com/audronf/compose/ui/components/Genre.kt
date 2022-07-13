@@ -16,14 +16,14 @@ import coil.compose.AsyncImage
 @Preview
 @Composable
 fun Genre(
-    color: Color = Color.Magenta,
+    color: Color = Color.Gray,
     name: String = "Infantiles",
     image: String = "https://lumiere-a.akamaihd.net/v1/images/image_07f1aaf3.jpeg"
 ) {
     Card(
         modifier = Modifier
             .height(112.dp)
-            .width(160.dp),
+            .width(150.dp),
         backgroundColor = color
     ) {
         Column(horizontalAlignment = Alignment.Start) {

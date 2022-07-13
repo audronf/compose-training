@@ -8,17 +8,19 @@ import com.audronf.compose.ui.screens.Favorites
 import com.audronf.compose.ui.screens.Home
 import com.audronf.compose.ui.screens.Profile
 import com.audronf.compose.ui.screens.Search
+import com.audronf.compose.ui.viewmodel.SearchViewModel
 
 @Composable
 fun Navigation(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    searchViewModel: SearchViewModel
 ) {
     NavHost(navController = navHostController, startDestination = "home") {
         composable(NavigationItem.Home.route) {
             Home()
         }
         composable(NavigationItem.Search.route) {
-            Search()
+            Search(searchViewModel)
         }
         composable(NavigationItem.Favorites.route) {
             Favorites()

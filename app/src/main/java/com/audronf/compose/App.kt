@@ -13,10 +13,12 @@ import androidx.navigation.compose.rememberNavController
 import com.audronf.compose.navigation.Navigation
 import com.audronf.compose.navigation.NavigationItem
 import com.audronf.compose.ui.theme.ComposeTrainingTheme
+import com.audronf.compose.ui.viewmodel.SearchViewModel
 
-@Preview
 @Composable
-fun App() {
+fun App(
+     searchViewModel: SearchViewModel
+) {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
     val navigationItems = listOf(
@@ -60,7 +62,7 @@ fun App() {
                 }
             }
         ) {
-            Navigation(navHostController = navController)
+            Navigation(navHostController = navController, searchViewModel = searchViewModel)
         }
     }
 }

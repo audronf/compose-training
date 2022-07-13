@@ -13,12 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
-@Preview
 @Composable
 fun Genre(
-    color: Color = Color.Gray,
-    name: String = "Infantiles",
-    image: String = "https://lumiere-a.akamaihd.net/v1/images/image_07f1aaf3.jpeg"
+    color: Color,
+    name: String,
+    image: String
 ) {
     Card(
         modifier = Modifier

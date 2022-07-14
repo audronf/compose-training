@@ -1,9 +1,13 @@
 package com.audronf.compose.ui.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +45,9 @@ fun SearchScreen(
     }
     val data = remember { searchViewModel.searchScreen.value }
     data?.let {
-        Column(modifier = Modifier.padding(24.dp)) {
+        Column(modifier = Modifier
+            .padding(PaddingValues(24.dp, 24.dp,24.dp, 0.dp))
+            .verticalScroll(rememberScrollState())) {
             Row {
                 Text(
                     text = stringResource(id = R.string.search_title),
@@ -102,6 +108,25 @@ fun SearchScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     items(it.popular) {
+                        MoviePreview(it.name, it.image, it.genre)
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(28.dp))
+            Row {
+                Text(
+                    text = stringResource(id = R.string.acclaimed_title),
+                    style = MaterialTheme.typography.h6,
+                    fontWeight = FontWeight.Light
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Row {
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    items(it.acclaimed) {
                         MoviePreview(it.name, it.image, it.genre)
                     }
                 }

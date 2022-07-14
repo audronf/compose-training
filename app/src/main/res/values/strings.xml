@@ -7,4 +7,5 @@
     <string name="genres">Géneros</string>
     <string name="search_movies_placeholder">Buscar películas</string>
     <string name="see_more">Ver más</string>
+    <string name="acclaimed_title">Aclamados por la crítica</string>
 </resources>

@@ -1,8 +1,12 @@
 package com.audronf.compose
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +21,7 @@ import com.audronf.compose.ui.viewmodel.SearchViewModel
 
 @Composable
 fun App(
-     searchViewModel: SearchViewModel
+    searchViewModel: SearchViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
@@ -60,9 +64,12 @@ fun App(
                         )
                     }
                 }
+            },
+            content = {
+                Column(modifier = Modifier.padding(it)) {
+                    Navigation(navHostController = navController, searchViewModel = searchViewModel)
+                }
             }
-        ) {
-            Navigation(navHostController = navController, searchViewModel = searchViewModel)
-        }
+        )
     }
 }

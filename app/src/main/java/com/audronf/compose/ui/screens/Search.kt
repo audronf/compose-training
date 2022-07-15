@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavHostController
 import com.audronf.compose.R
 import com.audronf.compose.ui.components.Genre
 import com.audronf.compose.ui.components.MoviePreview
@@ -30,24 +31,27 @@ import com.audronf.compose.ui.components.SearchBox
 import com.audronf.compose.ui.viewmodel.SearchViewModel
 
 @Composable
-fun Search(searchViewModel: SearchViewModel) {
+fun Search(navHostController: NavHostController, searchViewModel: SearchViewModel) {
     val data by searchViewModel.searchScreen.observeAsState()
     searchViewModel.retrieveData()
-    data?.let { SearchScreen(searchViewModel = searchViewModel) }
+    data?.let { SearchScreen(navHostController, searchViewModel) }
 }
 
 @Composable
 fun SearchScreen(
+    navHostController: NavHostController,
     searchViewModel: SearchViewModel
 ) {
-    LaunchedEffect(key1 = "i") {
+    LaunchedEffect(key1 = "search") {
         searchViewModel.retrieveData()
     }
     val data = remember { searchViewModel.searchScreen.value }
     data?.let {
-        Column(modifier = Modifier
-            .padding(PaddingValues(24.dp, 24.dp,24.dp, 0.dp))
-            .verticalScroll(rememberScrollState())) {
+        Column(
+            modifier = Modifier
+                .padding(PaddingValues(24.dp, 24.dp, 24.dp, 0.dp))
+                .verticalScroll(rememberScrollState())
+        ) {
             Row {
                 Text(
                     text = stringResource(id = R.string.search_title),
@@ -97,7 +101,7 @@ fun SearchScreen(
                         color = Color(0xFF2E69F7),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.clickable { /* TODO: Add listener */ }
+                        modifier = Modifier.clickable { navHostController.navigate("populars") }
                     )
                 }
             }

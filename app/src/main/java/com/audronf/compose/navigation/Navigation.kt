@@ -4,10 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.audronf.compose.ui.screens.Favorites
-import com.audronf.compose.ui.screens.Home
-import com.audronf.compose.ui.screens.Profile
-import com.audronf.compose.ui.screens.Search
+import androidx.navigation.navigation
+import com.audronf.compose.ui.screens.*
 import com.audronf.compose.ui.viewmodel.SearchViewModel
 
 @Composable
@@ -15,12 +13,17 @@ fun Navigation(
     navHostController: NavHostController,
     searchViewModel: SearchViewModel
 ) {
-    NavHost(navController = navHostController, startDestination = "home") {
+    NavHost(navController = navHostController, startDestination = NavigationItem.Home.route) {
         composable(NavigationItem.Home.route) {
             Home()
         }
-        composable(NavigationItem.Search.route) {
-            Search(searchViewModel)
+        navigation(startDestination = "mainSearch", route = NavigationItem.Search.route) {
+            composable("mainSearch") {
+                Search(navHostController, searchViewModel)
+            }
+            composable("populars") {
+                Populars(navHostController)
+            }
         }
         composable(NavigationItem.Favorites.route) {
             Favorites()

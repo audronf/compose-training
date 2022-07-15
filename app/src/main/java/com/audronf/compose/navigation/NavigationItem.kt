@@ -2,9 +2,28 @@ package com.audronf.compose.navigation
 
 import com.audronf.compose.R
 
-sealed class NavigationItem(val route: String, val iconId: Int, val title: String) {
-    object Home: NavigationItem("home", R.drawable.ic_home, "Home")
-    object Search: NavigationItem("search", R.drawable.ic_search, "Search")
-    object Favorites: NavigationItem("favorites", R.drawable.ic_favorites, "Favorites")
-    object Profile: NavigationItem("profile", R.drawable.ic_profile, "Profile")
+sealed class NavigationItem(
+    val route: String,
+    val internalRoutes: List<String> = listOf(),
+    val iconId: Int,
+    val title: String,
+) {
+    object Home :
+        NavigationItem(route = Paths.HOME_PATH, iconId = R.drawable.ic_home, title = "Inicio")
+
+    object Search : NavigationItem(
+        route = Paths.SEARCH_PATH,
+        internalRoutes = listOf(Paths.MAIN_SEARCH_SCREEN_PATH, Paths.MAIN_SEARCH_SCREEN_PATH),
+        iconId = R.drawable.ic_search,
+        title = "Buscar"
+    )
+
+    object Favorites : NavigationItem(
+        route = Paths.FAVORITES_PATH,
+        iconId = R.drawable.ic_favorites,
+        title = "Favoritos"
+    )
+
+    object Profile :
+        NavigationItem(route = Paths.PROFILE_PATH, iconId = R.drawable.ic_profile, title = "Perfil")
 }

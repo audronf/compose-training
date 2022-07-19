@@ -106,7 +106,7 @@ fun SearchScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     items(it.popular) {
-                        MoviePreview(it.name, it.image, it.genre)
+                        MoviePreview(it.name, it.image, it.genre, navHostController)
                     }
                 }
             }
@@ -125,7 +125,7 @@ fun SearchScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     items(it.acclaimed) {
-                        MoviePreview(it.name, it.image, it.genre)
+                        MoviePreview(it.name, it.image, it.genre, navHostController)
                     }
                 }
             }

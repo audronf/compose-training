@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.audronf.compose.navigation.Navigation
 import com.audronf.compose.navigation.NavigationItem
 import com.audronf.compose.ui.theme.ComposeTrainingTheme
+import com.audronf.compose.ui.viewmodel.DetailsViewModel
 import com.audronf.compose.ui.viewmodel.PopularsViewModel
 import com.audronf.compose.ui.viewmodel.SearchViewModel
 
@@ -23,7 +24,8 @@ import com.audronf.compose.ui.viewmodel.SearchViewModel
 @Composable
 fun App(
     searchViewModel: SearchViewModel,
-    popularsViewModel: PopularsViewModel
+    popularsViewModel: PopularsViewModel,
+    detailsViewModel: DetailsViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
@@ -45,7 +47,9 @@ fun App(
                     navigationItems.forEach {
                         BottomNavigationItem(
                             label = { Text(it.title, fontSize = 9.sp) },
-                            selected = (currentScreen == it.route || it.internalRoutes.contains(currentScreen)) ,
+                            selected = (currentScreen == it.route || it.internalRoutes.contains(
+                                currentScreen
+                            )),
                             onClick = {
                                 navController.navigate(it.route) {
                                     popUpTo(navController.graph.findStartDestination().id) {
@@ -69,7 +73,12 @@ fun App(
             },
             content = {
                 Column(modifier = Modifier.padding(it)) {
-                    Navigation(navHostController = navController, searchViewModel = searchViewModel, popularsViewModel= popularsViewModel)
+                    Navigation(
+                        navHostController = navController,
+                        searchViewModel = searchViewModel,
+                        popularsViewModel = popularsViewModel,
+                        detailsViewModel = detailsViewModel
+                    )
                 }
             }
         )

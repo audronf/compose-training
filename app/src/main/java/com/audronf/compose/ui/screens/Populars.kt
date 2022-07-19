@@ -63,7 +63,7 @@ fun PopularsScreen(navHostController: NavHostController, data: PopularsScreen) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(data.populars) {
-                    MoviePreview(it.name, it.image, it.genre)
+                    MoviePreview(it.name, it.image, it.genre, navHostController)
                 }
             }
         }

@@ -7,4 +7,5 @@ object Paths {
     const val POPULARS_PATH = "populars"
     const val FAVORITES_PATH = "favorites"
     const val PROFILE_PATH = "profile"
+    const val DETAILS_PATH = "details"
 }

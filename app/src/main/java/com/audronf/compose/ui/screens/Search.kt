@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavHostController
 import com.audronf.compose.R
+import com.audronf.compose.model.SearchScreen
 import com.audronf.compose.ui.components.Genre
 import com.audronf.compose.ui.components.MoviePreview
 import com.audronf.compose.ui.components.SearchBox
@@ -33,20 +34,16 @@ import com.audronf.compose.ui.viewmodel.SearchViewModel
 @Composable
 fun Search(navHostController: NavHostController, searchViewModel: SearchViewModel) {
     val data by searchViewModel.searchScreen.observeAsState()
-    searchViewModel.retrieveData()
-    data?.let { SearchScreen(navHostController, searchViewModel) }
+    LaunchedEffect(Unit) { searchViewModel.retrieveData() }
+    data?.let { SearchScreen(navHostController, it) }
 }
 
 @Composable
 fun SearchScreen(
     navHostController: NavHostController,
-    searchViewModel: SearchViewModel
+    data: SearchScreen
 ) {
-    LaunchedEffect(key1 = "search") {
-        searchViewModel.retrieveData()
-    }
-    val data = remember { searchViewModel.searchScreen.value }
-    data?.let {
+    data.let {
         Column(
             modifier = Modifier
                 .padding(PaddingValues(24.dp, 24.dp, 24.dp, 0.dp))

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.audronf.compose.model.MoviePreview
 import com.audronf.compose.model.PopularsScreen
 import com.audronf.compose.repository.PopularsRepository
 import kotlinx.coroutines.launch

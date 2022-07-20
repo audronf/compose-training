@@ -13,7 +13,7 @@ sealed class NavigationItem(
 
     object Search : NavigationItem(
         route = Paths.SEARCH_PATH,
-        internalRoutes = listOf(Paths.MAIN_SEARCH_SCREEN_PATH, Paths.MAIN_SEARCH_SCREEN_PATH),
+        internalRoutes = listOf(Paths.MAIN_SEARCH_SCREEN_PATH, Paths.POPULARS_PATH, Paths.DETAILS_PATH),
         iconId = R.drawable.ic_search,
         title = "Buscar"
     )

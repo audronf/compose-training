@@ -8,4 +8,6 @@
     <string name="search_movies_placeholder">Buscar películas</string>
     <string name="see_more">Ver más</string>
     <string name="acclaimed_title">Aclamados por la crítica</string>
+    <string name="add_to_favorites">Agregar a favoritos</string>
+    <string name="remove_from_favorites">Eliminar de favoritos</string>
 </resources>

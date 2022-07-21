@@ -7,5 +7,11 @@ data class Movie(
     val duration: String,
     val genre: String,
     val synopsis: String,
-    val stars: Int
-)
+    val stars: Double
+) {
+    val wholePart: Int
+        get() = stars.toString().split('.').first().toInt()
+
+    val decimalPart: Int
+        get() = stars.toString().split('.')[1].toInt()
+}

@@ -12,17 +12,47 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.audronf.compose.R
+import com.audronf.compose.model.Movie
 
 @Composable
-fun MovieRate(stars: Int) {
+fun MovieRate(movie: Movie) {
+    var ent = movie.wholePart
+    var dec = movie.decimalPart
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        LazyRow() {
-            items(stars) {
-                Image(painter = painterResource(id = R.drawable.ic_star), contentDescription = "")
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+            items(5) {
+                when {
+                    ent != 0 -> {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_star),
+                            contentDescription = ""
+                        )
+                        ent--
+                    }
+                    dec != 0 -> {
+                        Box {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_half_star),
+                                contentDescription = ""
+                            )
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_empty_star),
+                                contentDescription = ""
+                            )
+                        }
+
+                        dec = 0
+                    }
+                    else -> {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_empty_star),
+                            contentDescription = ""
+                        )
+                    }
+                }
             }
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = stars.toString(), fontSize = 12.sp, fontWeight = FontWeight.Light)
+        Text(text = movie.stars.toString(), fontSize = 12.sp, fontWeight = FontWeight.Light)
     }
-
 }

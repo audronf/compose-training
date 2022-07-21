@@ -27,7 +27,7 @@ fun MovieDetailHeader(
     age: String,
     duration: String
 ) {
-    Box(modifier = Modifier.clip(RoundedCornerShape(24.dp))) {
+    Box(modifier = Modifier.clip(RoundedCornerShape(0.dp, 0.dp, 24.dp, 24.dp))) {
         AsyncImage(
             model = imageUrl,
             contentDescription = null,

@@ -1,5 +1,6 @@
 package com.audronf.compose.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.rememberScrollState
@@ -15,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -64,8 +66,20 @@ fun DetailsScreen(navHostController: NavHostController, movie: Movie) {
                 }
                 Spacer(modifier = Modifier.height(32.dp))
                 Row() {
+                    val context = LocalContext.current
                     Button(
                         onClick = {
+                            if (!isFavorite.value) {
+                                Toast.makeText(context, "Agregada a favoritos", Toast.LENGTH_SHORT)
+                                    .show()
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Eliminada de favoritos",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
                             isFavorite.value = !isFavorite.value
                         },
                         colors = ButtonDefaults.buttonColors(
@@ -75,9 +89,10 @@ fun DetailsScreen(navHostController: NavHostController, movie: Movie) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = if (!isFavorite.value) stringResource(id = R.string.add_to_favorites).uppercase() else stringResource(
-                                id = R.string.remove_from_favorites
-                            ).uppercase(),
+                            text = if (!isFavorite.value)
+                                stringResource(id = R.string.add_to_favorites).uppercase()
+                            else
+                                stringResource(id = R.string.remove_from_favorites).uppercase(),
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(0.dp, 4.dp)
                         )

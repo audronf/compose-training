@@ -9,5 +9,7 @@
     <string name="see_more">Ver más</string>
     <string name="acclaimed_title">Aclamados por la crítica</string>
     <string name="add_to_favorites">Agregar a favoritos</string>
+    <string name="added_to_favorites">Agregada a favoritos</string>
     <string name="remove_from_favorites">Eliminar de favoritos</string>
+    <string name="removed_from_favorites">Eliminada de favoritos</string>
 </resources>
